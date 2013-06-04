@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  creepypasta-files
+
+  Created by Byron Sanchez on 2/6/13.
+  Copyright (c) 2013 Chompix. All rights reserved.
+*/
+
+"app_name" = "Creepypasta Files"; //
+"menu_settings" = "Settings";
+"tv_shop_text" = "[shop]";
+"tv_shop_description" = "Each item is a pay once unlimited use item.";
+"tv_shop_no_ads_label" = "TextView";
+"ib_shop_no_ads_buy_content_description" = "Button to buy the no-ads feature.";
+"ib_node_settings_content_description" = "Button to navigate to the settings screen.";
+"ib_node_bookmark_content_description" = "Button to bookmark the current story.";
+"tv_settings_label" = "[settings]"; //
+"tv_settings_text_size_label" = "Text Size"; //
+"tv_settings_shop_label" = "Visit Shop"; //
+"ib_settings_shop_content_description" = "Button to navigate to the shop screen.";
+"ib_settings_credits_content_description" = "Button to navigate to the credits screen.";
+"tv_settings_credits_label" = "View Credits"; //
+"b_main_bookmarks" = "[bookmarks]"; //
+"bookmarks_help" = "You do not have any bookmarks. To add a bookmark, press the bookmark button on the top right corner of any story page."; //
+"b_main_browse" = "[the files]"; //
+"ib_main_settings_content_description" = "Button to navigate to the settings screen.";
+"ib_main_help_content_description" = "Button to navigate to the help screen.";
+"et_input_search" = "Search";
+"tv_browse_label" = "[the files]"; //
+"tv_bookmarks_label" = "[bookmarks]"; //
+"tv_help" = "<b>Browse Files</b> - Navigate through the stories.<br /><br />
+
+<b>Bookmarks</b> - You can set bookmarks while reading a story for easy access in the future. Add or remove a bookmark by pressing the bookmark button on the top-right corner of the story screen.<br /><br />
+
+<b>Settings</b> - Configure story text size, visit the shop, or view production credits.<br /><br />
+
+<b>Help</b> - View this help screen."; //
+"error_ok_label" = "OK";
