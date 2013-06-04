@@ -1,0 +1,6 @@
+[submodule "Vendor"]
+	path = Vendor
+	url = https://github.com/byronsanchez/creepypasta-files-dependencies-ios.git
+[submodule "Resources"]
+	path = Resources
+	url = https://github.com/byronsanchez/creepypasta-files-resources-ios.git
