@@ -72,14 +72,6 @@
 		A329E2DB17532C4C00B85447 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A329E27D17532C4C00B85447 /* Default@2x.png */; };
 		A354AFF216DACB74000C9D2B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354AFF116DACB74000C9D2B /* StoreKit.framework */; };
 		A369E62C16BF1139004A6265 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369E62B16BF1139004A6265 /* QuartzCore.framework */; };
-		A372DD50175E3EC40037616D /* candle_cove_01.png in Resources */ = {isa = PBXBuildFile; fileRef = A372DD48175E3EC40037616D /* candle_cove_01.png */; };
-		A372DD51175E3EC40037616D /* expressionless_28 in Resources */ = {isa = PBXBuildFile; fileRef = A372DD49175E3EC40037616D /* expressionless_28 */; };
-		A372DD52175E3EC40037616D /* jack_hill_94 in Resources */ = {isa = PBXBuildFile; fileRef = A372DD4A175E3EC40037616D /* jack_hill_94 */; };
-		A372DD53175E3EC40037616D /* liars_98 in Resources */ = {isa = PBXBuildFile; fileRef = A372DD4B175E3EC40037616D /* liars_98 */; };
-		A372DD54175E3EC40037616D /* pokemon_black_95 in Resources */ = {isa = PBXBuildFile; fileRef = A372DD4C175E3EC40037616D /* pokemon_black_95 */; };
-		A372DD55175E3EC40037616D /* smile_dog_39 in Resources */ = {isa = PBXBuildFile; fileRef = A372DD4D175E3EC40037616D /* smile_dog_39 */; };
-		A372DD56175E3EC40037616D /* the_rake_20 in Resources */ = {isa = PBXBuildFile; fileRef = A372DD4E175E3EC40037616D /* the_rake_20 */; };
-		A372DD57175E3EC40037616D /* wake_up_38 in Resources */ = {isa = PBXBuildFile; fileRef = A372DD4F175E3EC40037616D /* wake_up_38 */; };
 		A3BDC6A216E2D98900BBA5B7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BDC6A116E2D98900BBA5B7 /* AudioToolbox.framework */; };
 		A3BDC6A416E2D99200BBA5B7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BDC6A316E2D99200BBA5B7 /* MessageUI.framework */; };
 		A3BDC6A616E2D99900BBA5B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BDC6A516E2D99900BBA5B7 /* SystemConfiguration.framework */; };
@@ -198,14 +190,6 @@
 		A329E27D17532C4C00B85447 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A354AFF116DACB74000C9D2B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A369E62B16BF1139004A6265 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		A372DD48175E3EC40037616D /* candle_cove_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candle_cove_01.png; sourceTree = "<group>"; };
-		A372DD49175E3EC40037616D /* expressionless_28 */ = {isa = PBXFileReference; lastKnownFileType = file; path = expressionless_28; sourceTree = "<group>"; };
-		A372DD4A175E3EC40037616D /* jack_hill_94 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jack_hill_94; sourceTree = "<group>"; };
-		A372DD4B175E3EC40037616D /* liars_98 */ = {isa = PBXFileReference; lastKnownFileType = file; path = liars_98; sourceTree = "<group>"; };
-		A372DD4C175E3EC40037616D /* pokemon_black_95 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pokemon_black_95; sourceTree = "<group>"; };
-		A372DD4D175E3EC40037616D /* smile_dog_39 */ = {isa = PBXFileReference; lastKnownFileType = file; path = smile_dog_39; sourceTree = "<group>"; };
-		A372DD4E175E3EC40037616D /* the_rake_20 */ = {isa = PBXFileReference; lastKnownFileType = file; path = the_rake_20; sourceTree = "<group>"; };
-		A372DD4F175E3EC40037616D /* wake_up_38 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wake_up_38; sourceTree = "<group>"; };
 		A3BDC6A116E2D98900BBA5B7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A3BDC6A316E2D99200BBA5B7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A3BDC6A516E2D99900BBA5B7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -439,14 +423,6 @@
 		A372DD47175E3EC40037616D /* Raw */ = {
 			isa = PBXGroup;
 			children = (
-				A372DD48175E3EC40037616D /* candle_cove_01.png */,
-				A372DD49175E3EC40037616D /* expressionless_28 */,
-				A372DD4A175E3EC40037616D /* jack_hill_94 */,
-				A372DD4B175E3EC40037616D /* liars_98 */,
-				A372DD4C175E3EC40037616D /* pokemon_black_95 */,
-				A372DD4D175E3EC40037616D /* smile_dog_39 */,
-				A372DD4E175E3EC40037616D /* the_rake_20 */,
-				A372DD4F175E3EC40037616D /* wake_up_38 */,
 			);
 			path = Raw;
 			sourceTree = "<group>";
@@ -827,14 +803,6 @@
 				A329E2D917532C4C00B85447 /* Default-Portrait~ipad.png in Resources */,
 				A329E2DA17532C4C00B85447 /* Default.png in Resources */,
 				A329E2DB17532C4C00B85447 /* Default@2x.png in Resources */,
-				A372DD50175E3EC40037616D /* candle_cove_01.png in Resources */,
-				A372DD51175E3EC40037616D /* expressionless_28 in Resources */,
-				A372DD52175E3EC40037616D /* jack_hill_94 in Resources */,
-				A372DD53175E3EC40037616D /* liars_98 in Resources */,
-				A372DD54175E3EC40037616D /* pokemon_black_95 in Resources */,
-				A372DD55175E3EC40037616D /* smile_dog_39 in Resources */,
-				A372DD56175E3EC40037616D /* the_rake_20 in Resources */,
-				A372DD57175E3EC40037616D /* wake_up_38 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

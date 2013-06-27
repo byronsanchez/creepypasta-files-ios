@@ -4,8 +4,19 @@
 # CONFIGURATION
 ###############
 
-# NOTE: No custom configuration is needed for this repository. You may
-# safely ignore the warnings produced by this script.
+# Your AdMob unit id. You need to sign up with AdMob.
+#
+# See: https://developers.google.com/mobile-ads-sdk/docs/admob/fundamentals#defineadview
+# Modifies: NodeViewController.m in Classes/ViewControllers/
+AD_UNIT_ID=""
+
+# If you are going to install this on a physical device (a real phone as
+# opposed to an emulator), you need to place your physical device id here
+# so you don't get served real ads.
+#
+# See: https://developers.google.com/mobile-ads-sdk/docs/admob/best-practices#testmode
+# Modifies: NodeViewController.m in Classes/ViewControllers/
+PHYSICAL_DEVICE_ID=""
 
 ######################
 # SYSTEM CONFIGURATION
@@ -50,18 +61,38 @@ function validate_user {
   fi
 }
 
-# NOTE: Currently not used. Use if there are any required config
-# variable definitions.
 function check_sanity {
   isInvalid=false
-
-  # Put config validation here if needed.
-
+  if [ -z "$AD_UNIT_ID" ]; then
+    isInvalid=true
+    message="Error: You must set the \$AD_UNIT_ID variable"
+    printf "\e[31m$message\e[0m\n"
+  fi
+  if [ -z "$PHYSICAL_DEVICE_ID" ]; then
+    isInvalid=true
+    message="Error: You must set the \$PHYSICAL_DEVICE_ID variable"
+    printf "\e[31m$message\e[0m\n"
+  fi
   if $isInvalid; then
     message="Build aborted due to errors!"
     printf "\e[31m$message\e[0m\n"
     exit 2
   fi
+}
+
+function prepare_NodeViewController_Ads {
+  target="$PROJECT_DIR/Classes/ViewControllers/NodeViewController.m"
+  sub_string="s|_adBannerView.adUnitID = @\"YOUR_UNIT_ID_HERE\";|_adBannerView.adUnitID = @\"$AD_UNIT_ID\";|g"
+  sed_file "$target" "$sub_string"
+}
+
+function prepare_NodeViewController_Devices {
+  # Have the shell interpret the newline for cross-compatibility.
+  # (Some versions of sed won't interpret it).
+  lf=$'\n'
+  target="$PROJECT_DIR/Classes/ViewControllers/NodeViewController.m"
+  sub_string="s|GAD_SIMULATOR_ID,|GAD_SIMULATOR_ID,\\$lf                                 \"$PHYSICAL_DEVICE_ID\",|g"
+  sed_file "$target" "$sub_string"
 }
 
 function build_database {
@@ -70,8 +101,6 @@ function build_database {
   sqlite3 $target_db < $target_ddl
 }
 
-# NOTE: Currently not used. Use this function if you need to make
-# substitutions.
 function sed_file {
   file=$1
   sub_string=$2
@@ -95,6 +124,8 @@ case "$1" in
 all)
   validate_user
   check_sanity
+  prepare_NodeViewController_Ads
+  prepare_NodeViewController_Devices
   build_database
   message="Build complete!"
   printf "\e[32m$message\e[0m\n"
