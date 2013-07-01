@@ -1,4 +1,4 @@
-        Creepypasta Files for iOS v0.1 <http://hackbytes.com>
+        Creepypasta Files for iOS v1.0 <http://chompix.com>
 
 This is the master repository of the "Creepypasta Files for iOS"
 app. The submodule repositories can be found at the following locations:
@@ -9,15 +9,25 @@ app. The submodule repositories can be found at the following locations:
 INSTRUCTIONS
 
   Clone the creepypasta-files-ios repository, or alternatively,
-  clone your fork of the creepypasta-files-ios repository. Then
-  add the necessary submodules:
-
+  clone your fork of the creepypasta-files-ios repository, along
+  with its submodules.
+  
+  For git version 1.6.5 or higher, run:
+  
+    git clone --recursive https://github.com/byronsanchez/creepypasta-files-ios.git
     cd creepypasta-files-ios
-    git submodule add https://github.com/byronsanchez/creepypasta-files-dependencies-ios.git Vendor
-    git submodule add https://github.com/byronsanchez/creepypasta-files-resources-ios.git Resources
-    git commit -m 'first commit with submodules'
+    Assets/Scripts/build.sh all
 
-  Now you're all set to hack "Creepypasta Files for iOS"!
+  For other versions of git, run:
+  
+    https://github.com/byronsanchez/creepypasta-files-ios.git
+    cd creepypasta-files-ios
+    git submodule update --init
+    Assets/Scripts/build.sh all
+
+  Follow the instructions in the build script carefully. Once you are
+  done with the build script, you will be all set to hack "Creepypasta
+  Files for iOS"!
 
 STRUCTURE
 
