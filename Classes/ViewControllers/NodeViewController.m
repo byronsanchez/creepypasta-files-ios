@@ -62,9 +62,9 @@
     // Custom initialization
     // Set initial color so initial transitions don't show a white bg.
     _wvNodeBody.backgroundColor = [UIColor blackColor];
-    [_wvNodeBody loadHTMLString:[NSString stringWithFormat:@"<html><head></head><body bgcolor=\"#000000\" text=\"#FFFFFF\"></body></html>"]
-                        baseURL:nil];
-    
+    [_wvNodeBody loadHTMLString:[NSString stringWithFormat:@"<html><head></head><body bgcolor=\"#000000\" text=\"#C4C4C4\"></body></html>"]
+                               baseURL:nil];
+
     // Make the scrollbar indicator white.
     _wvNodeBody.scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     _wvNodeBody.scrollView.backgroundColor = [UIColor blackColor];
@@ -249,7 +249,7 @@
                                                                   titleHeight)];
   [titleLabel setContentMode:UIViewContentModeLeft];
   [titleLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-  [titleLabel setTextColor:[UIColor whiteColor]];
+  [titleLabel setTextColor:[Colors colorFromHexString:@"#C4C4C4FF"]];
   [titleLabel setBackgroundColor:[UIColor clearColor]];
   [titleLabel setTextAlignment:UITextAlignmentCenter];
   [titleLabel setFont:titleFont];
@@ -359,8 +359,8 @@
   // Populate the text fields with corresponding data from the SQLite
   // database.
   // Set the text size of the webview based on the preference setting.
-  [_wvNodeBody loadHTMLString:[NSString stringWithFormat:@"<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" /><style type=\"text/css\"> html { -webkit-text-size-adjust: none; } body {font-family: \"%@\"; font-size: %d;} img {max-width: 100%%; width: auto;}</style></head><body bgcolor=\"#000000\" text=\"#FFFFFF\">%@</body></html>", font.familyName, [[_mTextSizeArray objectAtIndex:[Preferences getPreferenceInt:@"textSize" defaultValue:defaultInteger]] intValue], _mNodeData.body] baseURL:baseUrl];
-  
+  [_wvNodeBody loadHTMLString:[NSString stringWithFormat:@"<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" /><style type=\"text/css\"> html { -webkit-text-size-adjust: none; } body {font-family: \"%@\"; font-size: %d;} img {max-width: 100%%; width: auto;}</style></head><body bgcolor=\"#000000\" text=\"#C4C4C4\">%@</body></html>", font.familyName, [[_mTextSizeArray objectAtIndex:[Preferences getPreferenceInt:@"textSize" defaultValue:defaultInteger]] intValue], _mNodeData.body] baseURL:baseUrl];
+
   /**
    * iAds and AdMob Mediation.
    */
@@ -385,7 +385,7 @@
         extras.additionalParameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        @"000000", @"color_bg",
                                        @"FFFFFF", @"color_link",
-                                       @"CCCCCC", @"color_text",
+                                       @"C4C4C4", @"color_text",
                                        @"000000", @"bg_top",
                                        @"000000", @"border",
                                        @"FFFFFF", @"color_url",
