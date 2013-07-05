@@ -94,12 +94,6 @@ function prepare_NodeViewController_Devices {
   sed_file "$target" "$sub_string"
 }
 
-function build_database {
-  target_db="$PROJECT_DIR/Assets/creepypasta_files.db"
-  target_ddl="$PROJECT_DIR/Assets/creepypasta-files.sql"
-  sqlite3 $target_db < $target_ddl
-}
-
 function sed_file {
   file=$1
   sub_string=$2
@@ -125,7 +119,6 @@ all)
   check_sanity
   prepare_NodeViewController_Ads
   prepare_NodeViewController_Devices
-  build_database
   message="Build complete!"
   printf "\e[32m$message\e[0m\n"
   ;;

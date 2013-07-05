@@ -72,6 +72,11 @@
 		A329E2DB17532C4C00B85447 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A329E27D17532C4C00B85447 /* Default@2x.png */; };
 		A354AFF216DACB74000C9D2B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354AFF116DACB74000C9D2B /* StoreKit.framework */; };
 		A369E62C16BF1139004A6265 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A369E62B16BF1139004A6265 /* QuartzCore.framework */; };
+		A376E74F1782A71C00C7978C /* sc.01.00.0001 in Resources */ = {isa = PBXBuildFile; fileRef = A376E74B1782A71C00C7978C /* sc.01.00.0001 */; };
+		A376E7501782A71C00C7978C /* sc.01.00.0002 in Resources */ = {isa = PBXBuildFile; fileRef = A376E74C1782A71C00C7978C /* sc.01.00.0002 */; };
+		A376E7511782A71C00C7978C /* sc.01.01.0003 in Resources */ = {isa = PBXBuildFile; fileRef = A376E74D1782A71C00C7978C /* sc.01.01.0003 */; };
+		A376E7561783F86300C7978C /* NSString+RegexSplitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A376E7551783F86200C7978C /* NSString+RegexSplitAdditions.m */; };
+		A376E7581784D53200C7978C /* sc.01.01.0004 in Resources */ = {isa = PBXBuildFile; fileRef = A376E7571784D53200C7978C /* sc.01.01.0004 */; };
 		A3BDC6A216E2D98900BBA5B7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BDC6A116E2D98900BBA5B7 /* AudioToolbox.framework */; };
 		A3BDC6A416E2D99200BBA5B7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BDC6A316E2D99200BBA5B7 /* MessageUI.framework */; };
 		A3BDC6A616E2D99900BBA5B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BDC6A516E2D99900BBA5B7 /* SystemConfiguration.framework */; };
@@ -116,7 +121,6 @@
 		A3BFCFCF1753266600452950 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCFBE1753266600452950 /* SettingsViewController.m */; };
 		A3BFCFD01753266600452950 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCFC01753266600452950 /* ShopViewController.m */; };
 		A3BFCFD11753266600452950 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCFC21753266600452950 /* ViewController.m */; };
-		A3BFCFD71753267100452950 /* creepypasta_files.db in Resources */ = {isa = PBXBuildFile; fileRef = A3BFCFD61753267100452950 /* creepypasta_files.db */; };
 		A3C23FD016E0695900780DA9 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C23FCF16E0695900780DA9 /* iAd.framework */; };
 		A3FB9AD716BB95BE00DE2749 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FB9AD616BB95BE00DE2749 /* UIKit.framework */; };
 		A3FB9AD916BB95BE00DE2749 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FB9AD816BB95BE00DE2749 /* Foundation.framework */; };
@@ -190,6 +194,12 @@
 		A329E27D17532C4C00B85447 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A354AFF116DACB74000C9D2B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A369E62B16BF1139004A6265 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A376E74B1782A71C00C7978C /* sc.01.00.0001 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.00.0001; sourceTree = "<group>"; };
+		A376E74C1782A71C00C7978C /* sc.01.00.0002 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.00.0002; sourceTree = "<group>"; };
+		A376E74D1782A71C00C7978C /* sc.01.01.0003 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.01.0003; sourceTree = "<group>"; };
+		A376E7541783F86200C7978C /* NSString+RegexSplitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegexSplitAdditions.h"; sourceTree = "<group>"; };
+		A376E7551783F86200C7978C /* NSString+RegexSplitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegexSplitAdditions.m"; sourceTree = "<group>"; };
+		A376E7571784D53200C7978C /* sc.01.01.0004 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.01.0004; sourceTree = "<group>"; };
 		A3BDC6A116E2D98900BBA5B7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A3BDC6A316E2D99200BBA5B7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A3BDC6A516E2D99900BBA5B7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -269,7 +279,6 @@
 		A3BFCFC01753266600452950 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
 		A3BFCFC11753266600452950 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A3BFCFC21753266600452950 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		A3BFCFD61753267100452950 /* creepypasta_files.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = creepypasta_files.db; sourceTree = "<group>"; };
 		A3C23FCF16E0695900780DA9 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		A3FB9AD216BB95BE00DE2749 /* creepypasta-files.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "creepypasta-files.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3FB9AD616BB95BE00DE2749 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -425,6 +434,17 @@
 			children = (
 			);
 			path = Raw;
+			sourceTree = "<group>";
+		};
+		A376E74A1782A71C00C7978C /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A376E74B1782A71C00C7978C /* sc.01.00.0001 */,
+				A376E74C1782A71C00C7978C /* sc.01.00.0002 */,
+				A376E74D1782A71C00C7978C /* sc.01.01.0003 */,
+				A376E7571784D53200C7978C /* sc.01.01.0004 */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		A3BFCB37175325D800452950 /* Vendor */ = {
@@ -588,6 +608,8 @@
 				A3BFCFB31753266500452950 /* Colors.m */,
 				A3BFCFB41753266500452950 /* UIButton+StringTagAdditions.h */,
 				A3BFCFB51753266500452950 /* UIButton+StringTagAdditions.m */,
+				A376E7541783F86200C7978C /* NSString+RegexSplitAdditions.h */,
+				A376E7551783F86200C7978C /* NSString+RegexSplitAdditions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -621,7 +643,7 @@
 		A3BFCFD51753267100452950 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				A3BFCFD61753267100452950 /* creepypasta_files.db */,
+				A376E74A1782A71C00C7978C /* Database */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -739,7 +761,6 @@
 				A3BFCCD81753263700452950 /* ViewController_iPad.xib in Resources */,
 				A3BFCCD91753263700452950 /* ViewController_iPhone.xib in Resources */,
 				A3BFCCDA1753263700452950 /* ViewController_iPhoneLarge.xib in Resources */,
-				A3BFCFD71753267100452950 /* creepypasta_files.db in Resources */,
 				A329E29D17532C4C00B85447 /* Icon-72.png in Resources */,
 				A329E29E17532C4C00B85447 /* Icon-72@2x.png in Resources */,
 				A329E29F17532C4C00B85447 /* Icon.png in Resources */,
@@ -803,6 +824,10 @@
 				A329E2D917532C4C00B85447 /* Default-Portrait~ipad.png in Resources */,
 				A329E2DA17532C4C00B85447 /* Default.png in Resources */,
 				A329E2DB17532C4C00B85447 /* Default@2x.png in Resources */,
+				A376E74F1782A71C00C7978C /* sc.01.00.0001 in Resources */,
+				A376E7501782A71C00C7978C /* sc.01.00.0002 in Resources */,
+				A376E7511782A71C00C7978C /* sc.01.01.0003 in Resources */,
+				A376E7581784D53200C7978C /* sc.01.01.0004 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +855,7 @@
 				A3BFCFCF1753266600452950 /* SettingsViewController.m in Sources */,
 				A3BFCFD01753266600452950 /* ShopViewController.m in Sources */,
 				A3BFCFD11753266600452950 /* ViewController.m in Sources */,
+				A376E7561783F86300C7978C /* NSString+RegexSplitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
