@@ -36,8 +36,8 @@
 
 + (NSInteger)getPreferenceInt:(NSString *)key
                  defaultValue:(NSInteger)defaultValue {
-  NSNumber *num = [NSNumber numberWithInt:[[NSUserDefaults standardUserDefaults]
-                                           integerForKey:key]];
+  
+  NSObject *num = [[NSUserDefaults standardUserDefaults] objectForKey:key];
   
   // If the preference exists...
   if (num != nil) {
