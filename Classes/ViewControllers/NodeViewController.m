@@ -291,7 +291,7 @@
   [_titleView sendSubviewToBack:titleViewBg];
   
   
-  // SCROLLVIEW
+  // WEBVIEW
   _titleHeight = titleHeight;
   _wvNodeBody.frame = CGRectMake(0,
                                  titleHeight,
@@ -345,6 +345,9 @@
   // Populate the text fields with corresponding data from the SQLite
   // database.
   titleLabel.text = _mNodeData.title;
+  
+  // Render any custom tags if necessary.
+  _mNodeData.body = [self renderCustomTags:_mNodeData.body width:_screenWidth];
   
   // Get the set or default preference for text size (the index).
   NSInteger defaultInteger = 2;
@@ -679,6 +682,95 @@
     
   }
   
+}
+
+// Renders tags placed in the node and returns the entired body of the node,
+// whether it has been rendered or not.
+- (NSString *) renderCustomTags:(NSString *)nodeString width:(CGFloat)width {
+  
+  NSString *syntax = @"\\[video\\s+?(.*?)(?:\\s+?\\|\\s+?(.*?))?\\]";
+  NSError *errorSyntax = NULL;
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:syntax options:0 error:&errorSyntax];
+  if (!regex) {
+    // Output a message.
+    [[[UIAlertView alloc] initWithTitle:[errorSyntax localizedDescription]
+                                message:[errorSyntax localizedFailureReason]
+                               delegate:nil
+                      cancelButtonTitle:NSLocalizedString(@"error_ok_label",
+                                                          nil)
+                      otherButtonTitles:nil] show];
+  }
+  NSArray *matches = [regex matchesInString:nodeString
+                                    options:0
+                                      range:NSMakeRange(0, [nodeString length])];
+  CGFloat height = 0;
+  // Will contain the rendered data. Needed because live updates on nodeString
+  // invalidate regex range data and replacements won't work properly.
+  NSString *newNodeString = [nodeString copy];
+  
+  for (NSTextCheckingResult *match in matches) {
+    NSString *matchString = [nodeString substringWithRange:[match rangeAtIndex:0]];
+    NSString *source = nil;
+    NSString *style = nil;
+    if (!NSEqualRanges([match rangeAtIndex:1], NSMakeRange(NSNotFound, 0))) {
+      source = [nodeString substringWithRange:[match rangeAtIndex:1]];
+    }
+    if (!NSEqualRanges([match rangeAtIndex:2], NSMakeRange(NSNotFound, 0))) {
+      style = [nodeString substringWithRange:[match rangeAtIndex:2]];
+    }
+
+    // [String length] returns 0 if the string is nil or empty.
+    if ([source length] != 0) {
+      // Set default and flags for optional components.
+      if ([style length] == 0) {
+        height = .75f * width;
+      }
+      else {
+        if ([style isEqualToString:@"widescreen"]) {
+          height = .5625f * width;
+        }
+        else {
+          // If it's set to anything else, just use the default value.
+          height = .75f * width;
+        }
+      }
+      
+      // Youtube Regex
+      NSString *syntaxYoutube = @"(?:https?:\\/\\/)?(?:www\\.)?youtu(?:\\.be|be\\.com)\\/(?:watch\\?v=)?([\\w\\-]{10,})";
+      NSError *errorSyntaxYoutube = NULL;
+      NSRegularExpression *regexYoutube = [NSRegularExpression regularExpressionWithPattern:syntaxYoutube options:0 error:&errorSyntaxYoutube];
+      if (!regexYoutube)
+      {
+        // Output a message.
+        [[[UIAlertView alloc] initWithTitle:[errorSyntaxYoutube localizedDescription]
+                                    message:[errorSyntaxYoutube localizedFailureReason]
+                                   delegate:nil
+                          cancelButtonTitle:NSLocalizedString(@"error_ok_label",
+                                                              nil)
+                          otherButtonTitles:nil] show];
+      }
+      // There should only be one match, so we're using the first index only.
+      NSTextCheckingResult *matchYoutube = [[regexYoutube matchesInString:source
+                                        options:0
+                                          range:NSMakeRange(0, [source length])] objectAtIndex:0];
+      
+      // Truncate any decimal portions.
+      NSInteger intWidth = (NSInteger) width;
+      NSInteger intHeight = (NSInteger) height;
+      
+      if (matchYoutube != nil) {
+        // Build a hash of search and replace values [search] => replace.
+        // NSRegularExpression uses data it finds after scanning the entire
+        // string, so live updates invalidate that data and cause what would
+        // look like wrong replacements.
+        NSString *youtubeId = [source substringWithRange:[matchYoutube rangeAtIndex:1]];
+        NSString *replacementString = [NSString stringWithFormat:@"<iframe width=\"%d\" height=\"%d\" src=\"http://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen></iframe>", intWidth, intHeight, youtubeId];
+        newNodeString = [newNodeString stringByReplacingOccurrencesOfString:matchString withString:replacementString];
+      }
+    }
+  }
+  
+  return newNodeString;
 }
 
 @end
