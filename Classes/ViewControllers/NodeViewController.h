@@ -50,6 +50,9 @@
   // needed again.
   CGFloat _screenWidth;
   CGFloat _screenHeight;
+  CGFloat _screenWidthPadded;
+  CGFloat _screenHeightPadded;
+  CGFloat _screenMin;
   BOOL _isPortrait;
   CGFloat _titleHeight;
   
@@ -74,6 +77,8 @@
   // Device type.
   BOOL _isTablet;
   BOOL _isLarge;
+  
+  BOOL _isJavaScriptLoaded;
   
   // Ad properties.
   GADBannerView *_adBannerView;

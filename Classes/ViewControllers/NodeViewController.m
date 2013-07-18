@@ -86,18 +86,14 @@
   
   // Get the screen metrics.
   CGRect screenRect = [[UIScreen mainScreen] bounds];
-  
   // Use standard metrics. Autoresizing masks will take care of orientation
   // changes.
   _screenWidth = screenRect.size.width;
   _screenHeight = screenRect.size.height;
   
+  
   // DETERMINE DEVICE TYPE
   NSInteger device = UI_USER_INTERFACE_IDIOM();
-  
-  // Set defaults
-  _isTablet = NO;
-  _isLarge = NO;
   
   switch (device) {
     case UIUserInterfaceIdiomPhone: {
@@ -118,6 +114,19 @@
     }
       break;
   }
+  
+  // Set padding for the return button and progress indicator.
+  CGFloat padding = 0;
+  
+  if (_isTablet) {
+    padding = 10;
+  }
+  else {
+    padding = 4;
+  }
+  _screenWidthPadded = _screenWidth - (padding * 2);
+  _screenHeightPadded = _screenHeight - (padding * 2);
+  _screenMin = fminf(_screenWidthPadded, _screenHeightPadded);
   
   // Define the text size array.
   NSNumber *extraSmall = [NSNumber numberWithInt:12];
@@ -347,10 +356,7 @@
   titleLabel.text = _mNodeData.title;
   
   // Render any custom tags if necessary.
-  _mNodeData.body = [self renderCustomTags:_mNodeData.body width:_screenWidth];
-  
-  // Get the set or default preference for text size (the index).
-  NSInteger defaultInteger = 2;
+  _mNodeData.body = [self renderCustomTags:_mNodeData.body];
   
   // Load the image resource path.
   NSString *path = [[NSBundle mainBundle] bundlePath];
@@ -359,10 +365,17 @@
   // Set font styling.
   UIFont *font = [UIFont systemFontOfSize:16.0f];
   
+  // Get the set or default preference for text size (the index).
+  NSInteger defaultInteger = 2;
+  
+  NSInteger fontSize = [[_mTextSizeArray objectAtIndex:[Preferences getPreferenceInt:@"textSize" defaultValue:defaultInteger]] intValue];
+  
   // Populate the text fields with corresponding data from the SQLite
   // database.
   // Set the text size of the webview based on the preference setting.
-  [_wvNodeBody loadHTMLString:[NSString stringWithFormat:@"<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\" /><style type=\"text/css\"> html { -webkit-text-size-adjust: none; } body {font-family: \"%@\"; font-size: %d;} img {max-width: 100%%; width: auto;}</style></head><body bgcolor=\"#000000\" text=\"#C4C4C4\">%@</body></html>", font.familyName, [[_mTextSizeArray objectAtIndex:[Preferences getPreferenceInt:@"textSize" defaultValue:defaultInteger]] intValue], _mNodeData.body] baseURL:baseUrl];
+  NSString *data = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=10.0, user-scalable=yes\"><link rel=\"stylesheet\"  href=\"nodeactivity.css\"><script src=\"nodeactivity.js\"></script><style type=\"text/css\"> html { -webkit-text-size-adjust: none; } body { font-family: \"%@\"; font-size: %dpx; margin: 0; padding: %fpx; } img { width: %fpx; } </style></head><body bgcolor=\"#000000\" text=\"#C4C4C4\">%@</body></html>", font.familyName, fontSize, padding, _screenMin, _mNodeData.body];
+  
+  [_wvNodeBody loadHTMLString:data baseURL:baseUrl]; 
 
   /**
    * iAds and AdMob Mediation.
@@ -405,7 +418,6 @@
       }
     }
   }
-
 }
 
 // Creates the initial adView and set its size baesd on orientation.
@@ -455,7 +467,6 @@
     [[self view] bringSubviewToFront:_adBannerView];
     
   }
-  
 }
 
 // Invoked whenever an ad fails to load.
@@ -527,11 +538,14 @@
 
 // Updates the text preview based on text configuration preferences.
 - (void)updateView {
+
   // Get the set or default preference for text size (the index).
   NSInteger defaultInteger = 2;
   
+  NSInteger fontSize = [[_mTextSizeArray objectAtIndex:[Preferences getPreferenceInt:@"textSize" defaultValue:defaultInteger]] intValue];
+  
   // Use JavaScript to inject the new font size.
-  [_wvNodeBody stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.body.style.fontSize = %d", [[_mTextSizeArray objectAtIndex:[Preferences getPreferenceInt:@"textSize" defaultValue:defaultInteger]] intValue]]];
+  [_wvNodeBody stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.body.style.fontSize = '%dpx';", fontSize]];
   
   // Update the bookmark button image in case the user changed the bookmark
   // state.
@@ -544,6 +558,8 @@
                    forState:UIControlStateNormal];
   }
   
+  // Update image sizes.
+  [_wvNodeBody stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"updateImages(%f);", _screenMin]];
 }
 
 - (IBAction)onClick:(id)sender {
@@ -672,21 +688,20 @@
   
   // iAds
   if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-    
+    _isPortrait = NO;
     [self fixupAdView:UIDeviceOrientationLandscapeLeft];
     
   }
   else {
-    
+    _isPortrait = YES;
     [self fixupAdView:UIDeviceOrientationPortrait];
-    
   }
-  
+  [self updateView];
 }
 
 // Renders tags placed in the node and returns the entired body of the node,
 // whether it has been rendered or not.
-- (NSString *) renderCustomTags:(NSString *)nodeString width:(CGFloat)width {
+- (NSString *) renderCustomTags:(NSString *)nodeString {
   
   NSString *syntax = @"\\[video\\s+?(.*?)(?:\\s+?\\|\\s+?(.*?))?\\]";
   NSError *errorSyntax = NULL;
@@ -703,7 +718,8 @@
   NSArray *matches = [regex matchesInString:nodeString
                                     options:0
                                       range:NSMakeRange(0, [nodeString length])];
-  CGFloat height = 0;
+  CGFloat width = _screenMin;
+  CGFloat height = .75f * width;
   // Will contain the rendered data. Needed because live updates on nodeString
   // invalidate regex range data and replacements won't work properly.
   NSString *newNodeString = [nodeString copy];
@@ -711,30 +727,18 @@
   for (NSTextCheckingResult *match in matches) {
     NSString *matchString = [nodeString substringWithRange:[match rangeAtIndex:0]];
     NSString *source = nil;
-    NSString *style = nil;
+    NSString *name = nil;
     if (!NSEqualRanges([match rangeAtIndex:1], NSMakeRange(NSNotFound, 0))) {
       source = [nodeString substringWithRange:[match rangeAtIndex:1]];
     }
     if (!NSEqualRanges([match rangeAtIndex:2], NSMakeRange(NSNotFound, 0))) {
-      style = [nodeString substringWithRange:[match rangeAtIndex:2]];
+      // This value is not currently used, as iOS embed the video with all the
+      // necessary details.
+      name = [nodeString substringWithRange:[match rangeAtIndex:2]];
     }
-
+    
     // [String length] returns 0 if the string is nil or empty.
     if ([source length] != 0) {
-      // Set default and flags for optional components.
-      if ([style length] == 0) {
-        height = .75f * width;
-      }
-      else {
-        if ([style isEqualToString:@"widescreen"]) {
-          height = .5625f * width;
-        }
-        else {
-          // If it's set to anything else, just use the default value.
-          height = .75f * width;
-        }
-      }
-      
       // Youtube Regex
       NSString *syntaxYoutube = @"(?:https?:\\/\\/)?(?:www\\.)?youtu(?:\\.be|be\\.com)\\/(?:watch\\?v=)?([\\w\\-]{10,})";
       NSError *errorSyntaxYoutube = NULL;
@@ -751,8 +755,8 @@
       }
       // There should only be one match, so we're using the first index only.
       NSTextCheckingResult *matchYoutube = [[regexYoutube matchesInString:source
-                                        options:0
-                                          range:NSMakeRange(0, [source length])] objectAtIndex:0];
+                                                                  options:0
+                                                                    range:NSMakeRange(0, [source length])] objectAtIndex:0];
       
       // Truncate any decimal portions.
       NSInteger intWidth = (NSInteger) width;
