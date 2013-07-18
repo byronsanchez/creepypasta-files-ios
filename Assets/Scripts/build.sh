@@ -10,6 +10,8 @@
 # Modifies: NodeViewController.m in Classes/ViewControllers/
 AD_UNIT_ID=""
 
+# OPTIONAL
+#
 # If you are going to install this on a physical device (a real phone as
 # opposed to an emulator), you need to place your physical device id here
 # so you don't get served real ads.
@@ -68,9 +70,8 @@ function check_sanity {
     printf "\e[31m$message\e[0m\n"
   fi
   if [ -z "$PHYSICAL_DEVICE_ID" ]; then
-    isInvalid=true
-    message="Error: You must set the \$PHYSICAL_DEVICE_ID variable"
-    printf "\e[31m$message\e[0m\n"
+    message="Warning: No \$PHYSICAL_DEVICE_ID set"
+    printf "\e[33m$message\e[0m\n"
   fi
   if $isInvalid; then
     message="Build aborted due to errors!"
@@ -80,18 +81,22 @@ function check_sanity {
 }
 
 function prepare_NodeViewController_Ads {
-  target="$PROJECT_DIR/Classes/ViewControllers/NodeViewController.m"
-  sub_string="s|_adBannerView.adUnitID = @\"YOUR_UNIT_ID_HERE\";|_adBannerView.adUnitID = @\"$AD_UNIT_ID\";|g"
-  sed_file "$target" "$sub_string"
+  if [ ! -z "$AD_UNIT_ID" ]; then
+    target="$PROJECT_DIR/Classes/ViewControllers/NodeViewController.m"
+    sub_string="s|_adBannerView.adUnitID = @\"YOUR_UNIT_ID_HERE\";|_adBannerView.adUnitID = @\"$AD_UNIT_ID\";|g"
+    sed_file "$target" "$sub_string"
+  fi
 }
 
 function prepare_NodeViewController_Devices {
-  # Have the shell interpret the newline for cross-compatibility.
-  # (Some versions of sed won't interpret it).
-  lf=$'\n'
-  target="$PROJECT_DIR/Classes/ViewControllers/NodeViewController.m"
-  sub_string="s|GAD_SIMULATOR_ID,|GAD_SIMULATOR_ID,\\$lf                                 \"$PHYSICAL_DEVICE_ID\",|g"
-  sed_file "$target" "$sub_string"
+  if [ ! -z "$PHYSICAL_DEVICE_ID" ]; then
+    # Have the shell interpret the newline for cross-compatibility.
+    # (Some versions of sed won't interpret it).
+    lf=$'\n'
+    target="$PROJECT_DIR/Classes/ViewControllers/NodeViewController.m"
+    sub_string="s|GAD_SIMULATOR_ID,|GAD_SIMULATOR_ID,\\$lf                                 \"$PHYSICAL_DEVICE_ID\",|g"
+    sed_file "$target" "$sub_string"
+  fi
 }
 
 function sed_file {
