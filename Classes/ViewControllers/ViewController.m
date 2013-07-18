@@ -119,14 +119,9 @@
    * Database source data.
    */
   
-  // Create our database access object.
+  // Probe the database in case installation or upgrades are necessary.
   _mDbNodeHelper = [[NodeDatabase alloc] init];
-  
-  // Call the create right after initializing the helper, just in case
-  // the user has never run the app before.
   [_mDbNodeHelper createDatabase];
-  
-  // Close the database
   [_mDbNodeHelper close];
   
   /**

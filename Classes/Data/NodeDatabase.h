@@ -26,6 +26,7 @@
 #import <Foundation/Foundation.h>
 #include <sqlite3.h>
 
+#import "DBUpgradeTask.h"
 #import "NSString+RegexSplitAdditions.h"
 #import "Node.h"
 #import "Variable.h"
@@ -46,6 +47,8 @@
   NSString *_mRightOperand;
   NSString *_mOperator;
   
+  // A boolean signaling whether or not an upgrade task is in progress.
+  BOOL _mIsUpgradeTaskInProgress;
 }
 
 @property(nonatomic, copy) NSString *homeDirectory;
@@ -53,7 +56,7 @@
 @property(nonatomic, copy) NSString *mLeftOperand;
 @property(nonatomic, copy) NSString *mRightOperand;
 @property(nonatomic, copy) NSString *mOperator;
-
+@property(nonatomic, assign) BOOL mIsUpgradeTaskInProgress;
 
 // Wrapper method for creating the database. Intended for external access.
 - (void)createDatabase;
