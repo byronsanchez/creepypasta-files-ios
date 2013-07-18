@@ -68,6 +68,7 @@
     // Make the scrollbar indicator white.
     _wvNodeBody.scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     _wvNodeBody.scrollView.backgroundColor = [UIColor blackColor];
+    _isJavaScriptLoaded = NO;
   }
   return self;
 }
@@ -373,9 +374,10 @@
   // Populate the text fields with corresponding data from the SQLite
   // database.
   // Set the text size of the webview based on the preference setting.
-  NSString *data = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=10.0, user-scalable=yes\"><link rel=\"stylesheet\"  href=\"nodeactivity.css\"><script src=\"nodeactivity.js\"></script><style type=\"text/css\"> html { -webkit-text-size-adjust: none; } body { font-family: \"%@\"; font-size: %dpx; margin: 0; padding: %fpx; } img { width: %fpx; } </style></head><body bgcolor=\"#000000\" text=\"#C4C4C4\">%@</body></html>", font.familyName, fontSize, padding, _screenMin, _mNodeData.body];
+  NSString *data = [NSString stringWithFormat:@"<!DOCTYPE html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=10.0, user-scalable=yes\"><link rel=\"stylesheet\"  href=\"nodeactivity.css\"><style type=\"text/css\"> html { -webkit-text-size-adjust: none; } body { font-family: \"%@\"; font-size: %dpx; margin: 0; padding: %fpx; } img { width: %fpx; } </style></head><body bgcolor=\"#000000\" text=\"#C4C4C4\">%@<script src=\"nodeactivity.js\"></script></body></html>", font.familyName, fontSize, padding, _screenMin, _mNodeData.body];
   
-  [_wvNodeBody loadHTMLString:data baseURL:baseUrl]; 
+  [_wvNodeBody loadHTMLString:data baseURL:baseUrl];
+  _isJavaScriptLoaded = YES;
 
   /**
    * iAds and AdMob Mediation.
@@ -559,7 +561,9 @@
   }
   
   // Update image sizes.
-  [_wvNodeBody stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"updateImages(%f);", _screenMin]];
+  if (_isJavaScriptLoaded) {
+    [_wvNodeBody stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"updateImages(%f);", _screenMin]];
+  }
 }
 
 - (IBAction)onClick:(id)sender {
