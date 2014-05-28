@@ -1,0 +1,19 @@
+#########
+# GENERAL
+#########
+
+# OS Files
+.DS_Store
+
+# vi/vim
+*~
+*.swp
+*.swo
+
+
+##################
+# PROJECT-SPECIFIC
+##################
+
+/GoogleAdMob/Add-ons/GoogleAnalyticsiOS_2.0beta4/Documentation
+/GoogleAdMob/Add-ons/GoogleAnalyticsiOS_2.0beta4/Examples
